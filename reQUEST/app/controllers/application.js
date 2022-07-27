@@ -3,7 +3,11 @@ import { computed, get, set } from '@ember/object'
 
 export default Controller.extend({
 
-  requestType: undefined,
+  requestType: 'GET',
+
+  requestListener(){
+    console.log(this.responseText)
+  },
 
   actions:{
     changeRequestType(value){
@@ -12,8 +16,10 @@ export default Controller.extend({
     },
 
     sendRequest(){
-      console.log(this.get('inputValue'))
-      // ajax goes here
+      const xhr = new XMLHttpRequest()
+      xhr.addEventListener('load', this.requestListener)
+      xhr.open(`${this.get('requestType')}`, 'https://catfact.ninja/fact')
+      xhr.send()
     }
   }
 });
