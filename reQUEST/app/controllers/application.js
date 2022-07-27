@@ -9,6 +9,10 @@ export default Controller.extend({
     changeRequestType(value){
       this.set('requestType', value)
       console.log(this.get('requestType'))
+    },
+
+    sendRequest(){
+      console.log(this.get('inputValue'))
     }
   }
 });
