@@ -1,19 +1,24 @@
 <h1>reQUEST API Tester</h1>
 
-{{input placeholder='Enter request URL' value=inputValue}}
+<div id='request-inputs'>
+  {{input placeholder='Enter request URL' value=inputValue}}
 
-<select onchange={{action 'changeRequestType' value='target.value'}} name="requestType" id="">
-  <option value="GET">GET</option>
-  <option value="POST">POST</option>
-  <option value="PUT">PUT</option>
-  <option value="DELETE">DELETE</option>
-</select>
+  <select onchange={{action 'changeRequestType' value='target.value'}} name="requestType" id="">
+    <option value="GET">GET</option>
+    <option value="POST">POST</option>
+    <option value="PUT">PUT</option>
+    <option value="DELETE">DELETE</option>
+  </select>
 
-<button {{action 'handleRequest'}} type="submit">Send</button>
+  <button {{action 'handleRequest'}} type="submit">Send</button>
+</div>
 
-<button {{action 'handleFormatChange' 'pretty'}}>Pretty</button>
-<button {{action 'handleFormatChange' 'raw'}}>Raw</button>
-
+{{#if output}}
+<button class='{{if isPretty 'activeFormat' 'inactiveFormat'}}' {{action 'handleFormatChange' 'pretty'}}>Pretty</button>
+<button class='{{if isRaw 'activeFormat' 'inactiveFormat'}}' {{action 'handleFormatChange' 'raw'}}>Raw</button>
 <div id='request-output'>
   <pre>{{outputComputed}}</pre>
+  <pre>Request status: {{requestStatus}} ({{requestStatusText}})</pre>
+  <pre>Request took {{requestTime}}ms.</pre>
 </div>
+{{/if}}
