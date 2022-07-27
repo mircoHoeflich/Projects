@@ -9,8 +9,11 @@
   <option value="DELETE">DELETE</option>
 </select>
 
-<button {{action 'sendRequest'}} type="submit">Send</button>
+<button {{action 'handleRequest'}} type="submit">Send</button>
+
+<button {{action 'handleFormatChange' 'pretty'}}>Pretty</button>
+<button {{action 'handleFormatChange' 'raw'}}>Raw</button>
 
 <div id='request-output'>
-  <pre>{{outputRaw}}</pre>
+  <pre>{{outputComputed}}</pre>
 </div>
