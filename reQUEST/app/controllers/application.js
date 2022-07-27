@@ -13,6 +13,7 @@ export default Controller.extend({
 
     sendRequest(){
       console.log(this.get('inputValue'))
+      // ajax goes here
     }
   }
 });
