@@ -21,9 +21,9 @@ export default Controller.extend({
       xhr.open(`${this.get('requestType')}`, `${this.get('requestURL')}`)
       xhr.send()
       xhr.onload = () => {
-        console.log(xhr.responseText)
-        let str = xhr.responseText
-        this.set('outputRaw', str)
+       let jsonStr = JSON.stringify(JSON.parse(xhr.responseText), undefined, 4)
+       let rawStr = xhr.responseText
+        this.set('outputRaw', rawStr)
       }
       console.log(this.get('outputRaw'))
     }
