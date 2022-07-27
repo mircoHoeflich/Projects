@@ -5,9 +5,9 @@ export default Controller.extend({
 
   requestType: 'GET',
 
-  requestListener(){
-    console.log(this.responseText)
-  },
+  requestURL: undefined,
+
+  outputRaw: undefined,
 
   actions:{
     changeRequestType(value){
@@ -16,10 +16,16 @@ export default Controller.extend({
     },
 
     sendRequest(){
+      this.set('requestURL', this.get('inputValue'))
       const xhr = new XMLHttpRequest()
-      xhr.addEventListener('load', this.requestListener)
-      xhr.open(`${this.get('requestType')}`, 'https://catfact.ninja/fact')
+      xhr.open(`${this.get('requestType')}`, `${this.get('requestURL')}`)
       xhr.send()
+      xhr.onload = () => {
+        console.log(xhr.responseText)
+        let str = xhr.responseText
+        this.set('outputRaw', str)
+      }
+      console.log(this.get('outputRaw'))
     }
   }
 });
