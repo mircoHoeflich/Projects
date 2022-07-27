@@ -1,5 +1,13 @@
 <h1>reQUEST API Tester</h1>
 
 {{input placeholder='Test' value=inputValue}}
+
+<select onchange={{action 'changeRequestType' value='target.value'}} name="requestType" id="">
+  <option value="GET">GET</option>
+  <option value="POST">POST</option>
+  <option value="PUT">PUT</option>
+  <option value="DELETE">DELETE</option>
+</select>
+
 <button {{action 'click'}} type="submit">Send</button>
 

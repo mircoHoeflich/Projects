@@ -3,10 +3,12 @@ import { computed, get, set } from '@ember/object'
 
 export default Controller.extend({
 
-  actions:{
-    click(){
-      alert(this.get('inputValue'))
+  requestType: undefined,
 
+  actions:{
+    changeRequestType(value){
+      this.set('requestType', value)
+      console.log(this.get('requestType'))
     }
   }
 });
