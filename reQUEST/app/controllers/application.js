@@ -22,6 +22,13 @@ export default Controller.extend({
 
   isRaw: undefined,
 
+  isLoading: false,
+
+  isOver500ms: false,
+
+  isOver1000ms: false,
+  
+
   outputComputed: computed('output', 'outputFormat', {
     get(){
       return this.get('output')
@@ -37,6 +44,7 @@ export default Controller.extend({
     xhr.onreadystatechange = () => {
       if (xhr.readyState == 4 && xhr.status == 200) {
         console.log(xhr)
+        this.set('isLoading', false)
         const jsonStr = JSON.stringify(JSON.parse(xhr.responseText), undefined, 4)
         const rawStr = xhr.responseText
 
@@ -48,9 +56,22 @@ export default Controller.extend({
 
         const now = new Date();
         const diff = now - before;
+
+        if(diff < 500){
+          this.set('isOver500ms', false)
+          this.set('isOver1000ms', false)
+        } else if (diff > 500 && diff < 1000){
+          this.set('isOver500ms', true)
+          this.set('isOver1000ms', false)
+        } else if (diff > 1000) {
+          this.set('isOver500ms', false)
+          this.set('isOver1000ms', true)
+        }
+
         this.set('requestTime', diff)
         this.set('requestStatus', xhr.status)
         this.set('requestStatusText', xhr.statusText)
+        this.set('requestSize', xhr.getResponseHeader('Content-Length'))
       }
     }
   },
@@ -82,6 +103,7 @@ export default Controller.extend({
    },
 
     handleRequest(){
+      this.set('isLoading', true)
       this.sendRequest()
     }
   }

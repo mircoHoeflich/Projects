@@ -1,3 +1,142 @@
-.activeFormat{
-  color:red
+@import url('https://fonts.googleapis.com/css2?family=Manrope&display=swap');
+
+html{
+  font-family: 'Manrope', sans-serif;
 }
+
+.header{
+  text-align:center
+}
+
+.activeFormat{
+  background-color:rgb(214, 214, 214);
+  color:black!important;
+}
+
+#request-container{
+  margin:0 auto;
+  display:block;
+  width:80%;
+}
+
+#input-container{
+  display:flex
+}
+
+.output-container{
+  height:400px;
+  width:100%;
+  border: 1px solid lightgray;
+  margin-top:20px;
+}
+
+.output-container h4{
+  font-weight:normal;
+  margin: 5px 10px;
+}
+
+#request-input{
+  padding:15px;
+  width:100%;
+  border-radius:5px;
+  border: 1px solid lightgray;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-left:none;
+  margin-right:5px
+}
+
+#request-output{
+  margin-left:10px;
+}
+
+#submit-btn{
+  padding:15px;
+  background-color:rgb(0, 140, 255);
+  color:white;
+  border:1px solid rgb(0, 140, 255);
+  border-radius: 5px;
+  font-weight:bold;
+}
+
+#request-select{
+  padding:14px;
+  border-radius:5px;
+  border-right: none;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border: 1px solid lightgray
+  
+}
+
+.output-container p{
+  font-family: monospace;
+}
+
+.statusStuff{
+  float:right;
+  margin-right:20px;
+}
+
+#req-status{
+  font-size:0.9em;
+  background-color:rgb(72, 72, 136);
+  color:white;
+  padding:5px;
+}
+
+.normal{
+  font-size:0.9em;
+  background-color:rgb(211, 211, 211);
+  color:black;
+  padding:5px;
+}
+
+#req-size{
+  font-size:0.9em;
+  background-color:rgb(211, 211, 211);
+  color:black;
+  padding:5px;
+}
+
+.slow{
+  background-color:orange
+}
+
+.veryslow{
+  background-color:red;
+  font-size:0.9em;
+  color:black;
+  padding:5px;
+}
+
+.format-buttons{
+  margin-left:10px;
+  display:flex;
+
+
+}
+
+#pretty-btn{
+  color:rgb(116, 116, 116);
+  cursor:pointer;
+  width:60px;
+  padding:10px;
+  border:none;
+  border-radius:5px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+#raw-btn{
+  color:rgb(116, 116, 116);
+  cursor:pointer;
+  width:60px;
+  padding:10px;
+  border:none;
+  border-radius:5px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+

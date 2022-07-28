@@ -1,24 +1,39 @@
-<h1>reQUEST API Tester</h1>
+<h1 class='header'>reQUEST API Tester</h1>
 
-<div id='request-inputs'>
-  {{input placeholder='Enter request URL' value=inputValue}}
-
-  <select onchange={{action 'changeRequestType' value='target.value'}} name="requestType" id="">
+<div id='request-container'>
+  <div id="input-container">
+  <select id='request-select' onchange={{action 'changeRequestType' value='target.value'}} name="requestType">
     <option value="GET">GET</option>
     <option value="POST">POST</option>
     <option value="PUT">PUT</option>
     <option value="DELETE">DELETE</option>
   </select>
+  
 
-  <button {{action 'handleRequest'}} type="submit">Send</button>
+  {{input id='request-input' placeholder='Enter request URL' value=inputValue}}
+
+  <button id='submit-btn' {{action 'handleRequest'}} type="submit">Send</button>
 </div>
 
+<div class='output-container'>
+  <h4>output:</h4>
 {{#if output}}
-<button class='{{if isPretty 'activeFormat' 'inactiveFormat'}}' {{action 'handleFormatChange' 'pretty'}}>Pretty</button>
-<button class='{{if isRaw 'activeFormat' 'inactiveFormat'}}' {{action 'handleFormatChange' 'raw'}}>Raw</button>
-<div id='request-output'>
-  <pre>{{outputComputed}}</pre>
-  <pre>Request status: {{requestStatus}} ({{requestStatusText}})</pre>
-  <pre>Request took {{requestTime}}ms.</pre>
-</div>
+      <div class="statusStuff">
+          <span id='req-status'><strong>{{requestStatus}}</strong> {{requestStatusText}}</span>
+          <span class='{{if isOver500ms 'slow' 'normal'}} {{if isOver1000ms 'veryslow' 'normal'}}'>{{requestTime}} ms</span>
+          <span id='req-size'>{{requestSize}} B</span>
+      </div>
+
+      <div class="format-buttons">
+        <button id="pretty-btn" class='{{if isPretty 'activeFormat' 'inactiveFormat'}}' {{action 'handleFormatChange' 'pretty'}}>Pretty</button>
+        <button id="raw-btn" class='{{if isRaw 'activeFormat' 'inactiveFormat'}}' {{action 'handleFormatChange' 'raw'}}>Raw</button>
+      </div>
+
+      <div id='request-output'>
+        {{#if isPretty}}<pre>{{outputComputed}}</pre>{{/if}}
+        {{#if isRaw}}<p>{{outputComputed}}</p>{{/if}}
+    </div>
 {{/if}}
+{{#if isLoading}}<h2>loading...</h2>{{/if}}
+</div>
+</div>
